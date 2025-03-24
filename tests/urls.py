@@ -1,6 +1,6 @@
 import json
 
-from django.conf.urls import include, url
+from django.urls import re_path, include
 from django.contrib import admin
 from django.http import HttpResponse
 from rest_framework import permissions
@@ -45,11 +45,11 @@ class MockForAuthScopeView(APIView):
 
 
 urlpatterns = [
-    url(r"^o/", include("oauth2_provider_jwt.urls",
+    re_path(r"^o/", include("oauth2_provider_jwt.urls",
                         namespace="oauth2_provider_jwt")),
-    url(r'^jwt/$', MockView.as_view()),
-    url(r'^jwt_auth/$', MockForAuthView.as_view()),
-    url(r'^jwt_auth_scope/$', MockForAuthScopeView.as_view()),
+    re_path(r'^jwt/$', MockView.as_view()),
+    re_path(r'^jwt_auth/$', MockForAuthView.as_view()),
+    re_path(r'^jwt_auth_scope/$', MockForAuthScopeView.as_view()),
 ]
 
 
